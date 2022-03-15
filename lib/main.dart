@@ -29,6 +29,6 @@ class MyApp extends StatelessWidget {
           'HOME_SCREEN': (BuildContext context) => const HomeScreen(),
           'INTRO_SCREEN': (BuildContext context) => const IntroScreen(),
         },
-        initialRoute: 'INTRO_SCREEN');
+        initialRoute: 'HOME_SCREEN');
   }
 }

@@ -1,4 +1,5 @@
 import 'package:doublet_app/models/product.dart';
+import 'package:doublet_app/widgets/product_list.dart';
 import 'package:flutter/material.dart';
 import 'package:doublet_app/constants/index.dart';
 
@@ -22,183 +23,106 @@ class HomeScreenState extends State<HomeScreen> {
     super.initState();
   }
 
-
   @override
   Widget build(BuildContext context) {
     _height = MediaQuery.of(context).size.height;
     _width = MediaQuery.of(context).size.width;
 
-    return DefaultTabController(
-        length: 3,
-        child: Scaffold(
-            // backgroundColor:Colors.grey[100],
-            appBar: AppBar(
-              elevation: 0.0,
-              backgroundColor: Colors.transparent,
-              leading: null,
-              title: const Text(
-                'Double T',
-                style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.w900,
-                    letterSpacing: 1.0),
-              ),
-            ),
-            body: Container(
-                padding: const EdgeInsets.all(0.0),
-                height: _height,
-                width: _width,
-                child: Stack(
+    return Scaffold(
+        appBar: AppBar(
+            backgroundColor: Colors.transparent,
+            centerTitle: true,
+            elevation: 0,
+            toolbarHeight: 80,
+            title: SizedBox(
+                child: Column(
+              children: [
+                Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                  Image.asset('assets/images/doublet.png',
+                  height: 150
+                  ),
+                  const Padding(
+                      padding: EdgeInsets.only(left: 5),
+                      child: Text(
+                        "DoubleT sport",
+                        style: TextStyle(
+                            color: Color.fromARGB(255, 255, 123, 0),
+                            fontSize: 30,
+                            fontWeight: FontWeight.w800),
+                      ))
+                ])
+              ],
+            ))),
+        body: SingleChildScrollView(
+            child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 25, vertical: 25),
+                child: Column(
                   children: [
-                    SizedBox(
-                        height: 40,
-                        child: ListView(
-                            scrollDirection: Axis.horizontal,
-                            physics: const AlwaysScrollableScrollPhysics(),
-                            children: [
-                              const AspectRatio(
-                                aspectRatio: 2.1,
-                                child: Center(
-                                  child: Text(
-                                    'Nike',
-                                    style: TextStyle(
-                                        /* color:_isSelected ? Colors.black:Colors.grey,*/
-                                        fontSize: 16.5,
-                                        fontWeight: FontWeight.w600),
-                                  ),
-                                ),
-                              ),
-                              AspectRatio(
-                                aspectRatio: 3.2 / 1,
-                                child: Center(
-                                  child: Text(
-                                    'Adidas',
-                                    style: TextStyle(
-                                        fontSize: 16.5,
-                                        color: Colors.grey[500],
-                                        fontWeight: FontWeight.w600),
-                                  ),
-                                ),
-                              ),
-                              AspectRatio(
-                                aspectRatio: 3.2 / 1,
-                                child: Center(
-                                  child: Text(
-                                    'Jordan',
-                                    style: TextStyle(
-                                        fontSize: 16.5,
-                                        color: Colors.grey[500],
-                                        fontWeight: FontWeight.w600),
-                                  ),
-                                ),
-                              ),
-                              AspectRatio(
-                                aspectRatio: 3.2 / 1,
-                                child: Center(
-                                  child: Text(
-                                    'Puma',
-                                    style: TextStyle(
-                                        fontSize: 16.5,
-                                        color: Colors.grey[500],
-                                        fontWeight: FontWeight.w600),
-                                  ),
-                                ),
-                              ),
-                              AspectRatio(
-                                aspectRatio: 3.2 / 1,
-                                child: Center(
-                                  child: Text(
-                                    'Reebok',
-                                    style: TextStyle(
-                                        fontSize: 16.5,
-                                        color: Colors.grey[500],
-                                        fontWeight: FontWeight.w600),
-                                  ),
-                                ),
-                              ),
-                            ])),
+                    TextField(
+                      style: const TextStyle(
+                          fontSize: 16,
+                          color: Color.fromARGB(0, 0, 0, 0),
+                          fontWeight: FontWeight.bold),
+                      decoration: InputDecoration(
+                        filled: true,
+                        hintText: 'Input search text',
+                        hintStyle: const TextStyle(
+                            fontWeight: FontWeight.w700,
+                            fontSize: 16,
+                            color: Color(0xff7C7C7C)),
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(15),
+                            borderSide: const BorderSide(
+                                width: 0.0, style: BorderStyle.none)),
+                        prefixIcon: const Icon(
+                          Icons.search,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 15),
+                    Image.asset(
+                      'assets/images/grizman.jpg',
+                      width: double.infinity,
+                      height: 200,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text('Hot Products',
+                            style: TextStyle(
+                                fontSize: 24, fontWeight: FontWeight.w900)),
+                        TextButton(
+                            onPressed: () {},
+                            child: const Text('See all',
+                                style: TextStyle(
+                                    fontSize: 24, fontWeight: FontWeight.w900)))
+                      ],
+                    ),
+                    const SizedBox(height: 10),
+                    const ProductList(),
                     Padding(
-                        padding: const EdgeInsets.only(top: 30.0),
-                        child: SingleChildScrollView(
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              Container(
-                                  margin: const EdgeInsets.only(top: 0.0, left: 20.0),
-                                  alignment: Alignment.center,
-                                  width: 15.0,
-                                  // color: Colors.red,
-                                  child: RotatedBox(
-                                    quarterTurns: 7,
-                                    child: RichText(
-                                      text: const TextSpan(
-                                        text: 'Upcoming',
-                                        style: TextStyle(
-                                            color: Colors.grey,
-                                            fontSize: 12.0,
-                                            fontWeight: FontWeight.bold,
-                                            letterSpacing: 1.0),
-                                        children: [
-                                          WidgetSpan(
-                                            child: RotatedBox(quarterTurns: -7),
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Container(
-                                  margin: const EdgeInsets.only(top: 5.0, left: 20.0),
-                                  alignment: Alignment.center,
-                                  width: 15,
-                                  child: RotatedBox(
-                                    quarterTurns: 7,
-                                    child: RichText(
-                                      text: const TextSpan(
-                                        text: 'Featured',
-                                        style: TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 12.0,
-                                            fontWeight: FontWeight.bold,
-                                            letterSpacing: 1.0),
-                                        children: [
-                                          WidgetSpan(
-                                            child: RotatedBox(quarterTurns: -7),
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  )
-                                ),
-                                Container(
-                                  margin: const EdgeInsets.only(top: 5.0, left: 20.0),
-                                  alignment: Alignment.center,
-                                  width: 15.0,
-                                  // color: Colors.red,
-                                  child: RotatedBox(
-                                    quarterTurns: 7,
-                                    child: RichText(
-                                      text: const TextSpan(
-                                        text: 'New',
-                                        style: TextStyle(
-                                            color: Colors.grey,
-                                            fontSize: 12.0,
-                                            fontWeight: FontWeight.bold,
-                                            letterSpacing: 1.0),
-                                        children: [
-                                          WidgetSpan(
-                                            child: RotatedBox(quarterTurns: -7),
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                            ],
+                      padding: const EdgeInsets.only(top: 20),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Text(
+                            'Featured Products',
+                            style: TextStyle(
+                                fontSize: 24, fontWeight: FontWeight.w900),
                           ),
-                        )),
+                          TextButton(
+                              onPressed: () {},
+                              child: const Text('See all',
+                                  style: TextStyle(
+                                      fontSize: 24,
+                                      fontWeight: FontWeight.w900)))
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    const ProductList(),
                   ],
                 ))));
   }
