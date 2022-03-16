@@ -48,7 +48,7 @@ class IntroScreen extends StatelessWidget {
                       width: 261,
                       height: 49,
                       decoration: BoxDecoration(
-                          color: const Color(0xffFFEF60),
+                          color: const Color.fromARGB(255, 241, 140, 23),
                           borderRadius: BorderRadius.circular(30)),
                       child: Material(
                         color: Colors.transparent,
@@ -56,10 +56,7 @@ class IntroScreen extends StatelessWidget {
                           splashColor: Colors.grey,
                           borderRadius: BorderRadius.circular(30),
                           onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (_) => const LoginScreen()));
+                            Navigator.pushNamed(context, '/login');
                           },
                           child: Align(
                             alignment: Alignment.center,
@@ -85,10 +82,7 @@ class IntroScreen extends StatelessWidget {
                               fontSize: 14, color: const Color(0xff312C6A))),
                       GestureDetector(
                         onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (_) => const RegisterScreen()));
+                          Navigator.pushNamed(context, '/register');
                         },
                         child: Text('Sign Up Here',
                             style: GoogleFonts.poppins(

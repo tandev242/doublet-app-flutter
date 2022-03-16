@@ -17,7 +17,9 @@ class ProductList extends StatelessWidget {
           return Padding(
             padding: const EdgeInsets.only(right: 15),
             child: InkWell(
-              onTap: () {},
+              onTap: () {
+                Navigator.pushNamed(context, '/detail');
+              },
               child: Container(
                 decoration: BoxDecoration(
                   shape: BoxShape.rectangle,

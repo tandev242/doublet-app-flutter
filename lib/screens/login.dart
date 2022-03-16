@@ -9,6 +9,35 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
+  bool isEmailValidated = true;
+  bool isPasswordValidated = true;
+
+  void validateTextField() {
+    String email = emailController.text;
+    String password = passwordController.text;
+    if (email.isEmpty || !email.contains('@')) {
+      setState(() {
+        isEmailValidated = false;
+      });
+    } else {
+      setState(() {
+        isEmailValidated = true;
+      });
+    }
+    if (password.isEmpty || password.length < 6) {
+      setState(() {
+        isPasswordValidated = false;
+      });
+    } else {
+      setState(() {
+        isPasswordValidated = true;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -22,9 +51,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    'Let\'s Go Login :)',
+                    'LOGIN',
                     style: GoogleFonts.poppins(
-                        fontSize: 25,
+                        fontSize: 30,
                         fontWeight: FontWeight.bold,
                         color: const Color(0xff312C6A)),
                   ),
@@ -32,7 +61,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    '" We are Your Favorite UI Designer "',
+                    '" DoubleT sport is best sportswear 4men"',
                     style: GoogleFonts.poppins(
                         fontSize: 14, color: const Color(0xffA6A6A6)),
                   ),
@@ -59,11 +88,15 @@ class _LoginScreenState extends State<LoginScreen> {
                         blurRadius: 10)
                   ]),
                   child: TextField(
+                    controller: emailController,
                     style:
                         GoogleFonts.poppins(fontSize: 15, color: Colors.white),
                     keyboardType: TextInputType.emailAddress,
                     cursorColor: Colors.white,
                     decoration: InputDecoration(
+                        errorText: isEmailValidated
+                            ? null
+                            : 'Please enter a valid email address include @',
                         focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10)),
                         disabledBorder: OutlineInputBorder(
@@ -72,7 +105,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             borderRadius: BorderRadius.circular(10)),
                         fillColor: const Color(0xff464646),
                         filled: true,
-                        hintText: '  Input Email Here',
+                        hintText: 'Input Email Here',
                         hintStyle: GoogleFonts.poppins(
                             fontSize: 15, color: Colors.white)),
                   ),
@@ -99,11 +132,15 @@ class _LoginScreenState extends State<LoginScreen> {
                         blurRadius: 10)
                   ]),
                   child: TextField(
+                    controller: passwordController,
                     style:
                         GoogleFonts.poppins(fontSize: 15, color: Colors.white),
                     obscureText: true,
                     cursorColor: Colors.white,
                     decoration: InputDecoration(
+                        errorText: isPasswordValidated
+                            ? null
+                            : 'Password must be at least 6 characters',
                         focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10)),
                         disabledBorder: OutlineInputBorder(
@@ -118,7 +155,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
                 const SizedBox(
-                  height: 25,
+                  height: 20,
                 ),
                 Align(
                   alignment: Alignment.centerRight,
@@ -140,14 +177,19 @@ class _LoginScreenState extends State<LoginScreen> {
                     width: 261,
                     height: 49,
                     decoration: BoxDecoration(
-                        color: const Color(0xffFFEF60),
+                        color: const Color.fromARGB(255, 241, 140, 23),
                         borderRadius: BorderRadius.circular(30)),
                     child: Material(
                       color: Colors.transparent,
                       child: InkWell(
                         splashColor: Colors.grey,
                         borderRadius: BorderRadius.circular(30),
-                        onTap: () {},
+                        onTap: () {
+                          validateTextField();
+                          if (isPasswordValidated && isEmailValidated) {
+                            Navigator.pushNamed(context, '/');
+                          }
+                        },
                         child: Align(
                           alignment: Alignment.center,
                           child: Text(

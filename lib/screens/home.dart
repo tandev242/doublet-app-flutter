@@ -1,7 +1,5 @@
-import 'package:doublet_app/models/product.dart';
 import 'package:doublet_app/widgets/product_list.dart';
 import 'package:flutter/material.dart';
-import 'package:doublet_app/constants/index.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -11,23 +9,13 @@ class HomeScreen extends StatefulWidget {
 }
 
 class HomeScreenState extends State<HomeScreen> {
-  late double _height;
-  late double _width;
-  late List<Product> productList;
-  late PageController pageController;
-
   @override
   void initState() {
-    productList = Constants.getProducts();
-    pageController = PageController(viewportFraction: 6.0);
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    _height = MediaQuery.of(context).size.height;
-    _width = MediaQuery.of(context).size.width;
-
     return Scaffold(
         appBar: AppBar(
             backgroundColor: Colors.transparent,
@@ -38,16 +26,14 @@ class HomeScreenState extends State<HomeScreen> {
                 child: Column(
               children: [
                 Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                  Image.asset('assets/images/doublet.png',
-                  height: 150
-                  ),
+                  Image.asset('assets/images/doublet.png', height: 100),
                   const Padding(
                       padding: EdgeInsets.only(left: 5),
                       child: Text(
                         "DoubleT sport",
                         style: TextStyle(
                             color: Color.fromARGB(255, 255, 123, 0),
-                            fontSize: 30,
+                            fontSize: 25,
                             fontWeight: FontWeight.w800),
                       ))
                 ])
